@@ -1,7 +1,7 @@
 C_SOURCES = $(shell find . -name "*.c")
-C_OBJECTS = $(patsubst %.c %.o %(C_SOURCES))
+C_OBJECTS = $(patsubst %.c,%.o,%(C_SOURCES))
 S_SOURCES = $(shell find . -name "*.s")
-S_OBJECTS = $(putsubst %.s %.o %(S_SOURCES))
+S_OBJECTS = $(putsubst %.s,%.o,%(S_SOURCES))
 
 CC = gcc
 LD = ld
@@ -32,23 +32,23 @@ clean:
 
 .PHONY:update_image
 update_image:
-	sudo mount floppy.img /mnt/kernel
-	sudo cp hx_kernel /mnt/kernel/hx_kernel sleep 1
-	sudo umount /mnt/kernel
+	scripts/mount.sh
+	sudo cp tinykernel /mnt/kernel/tinykernel sleep 1
+	scripts/umount.sh
 
 .PHONY:mount_image
 mount_image:
-	sudo mount floppy.img /mnt/kernel
+	scripts/mount.sh
 
 .PHONY:umount_image
 umount_image:
-	sudo umount /mnt/kernel
+	scripts/umount.sh
 
 .PHONY:qemu
 qemu:
-	$(QEMU) −fda floppy.img −boot a
+	$(QEMU) -fda floppy.img -boot a
 
 .PHONY:debug
 debug:
 	$(QEMU) −S −s −fda floppy.img −boot a & sleep 1
-	cgdb −x tools/gdbinit
+	cgdb −x scripts/gdbinit
