@@ -1,14 +1,14 @@
 C_SOURCES = $(shell find . -name "*.c")
-C_OBJECTS = $(patsubst %.c,%.o,%(C_SOURCES))
+C_OBJECTS = $(patsubst %.c,%.o,$(C_SOURCES))
 S_SOURCES = $(shell find . -name "*.s")
-S_OBJECTS = $(putsubst %.s,%.o,%(S_SOURCES))
+S_OBJECTS = $(putsubst %.s,%.o,$(S_SOURCES))
 
-CC = gcc
+CC = gcc-4.8
 LD = ld
 ASM = nasm
 QEMU = qemu-system-i386
 
-C_FLAGS = -c -Wall -m32 --ggdb -gstabs+ -nostdinc -fno-builtin -fno-stack-protector -I include
+C_FLAGS = -c -Wall -m32 -ggdb -gstabs+ -nostdinc -fno-builtin -fno-stack-protector -I include
 LD_FLAGS = -T scripts/kernel.ld -m elf_i386 -nostdlib
 ASM_FLAGS = -f elf -g -F stabs
 
@@ -33,7 +33,8 @@ clean:
 .PHONY:update_image
 update_image:
 	scripts/mount.sh
-	sudo cp tinykernel /mnt/kernel/tinykernel sleep 1
+	sudo cp tinykernel /mnt/kernel/tinykernel
+	sleep 1
 	scripts/umount.sh
 
 .PHONY:mount_image
