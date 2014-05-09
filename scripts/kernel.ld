@@ -1,4 +1,4 @@
-ENTRY(strat)
+ENTRY(start)
 
 SECTIONS
 {

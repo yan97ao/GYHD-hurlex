@@ -3,10 +3,12 @@
 
 #ifndef NULL
 	#define NULL	0
+#endif
 
 #ifndef TRUE
 	#define TRUE	1
 	#define FALSE	0
+#endif
 
 typedef unsigned int	uint32_t;
 typedef int				int32_t;
