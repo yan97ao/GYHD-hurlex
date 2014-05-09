@@ -1,1 +1,1 @@
-sudo mount -t fuse-ext2 -o rw+  $(pwd)/floppy.img /mnt/kernel
+sudo mount $(pwd)/floppy.img /mnt/kernel
