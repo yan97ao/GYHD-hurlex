@@ -51,5 +51,5 @@ qemu:
 
 .PHONY:debug
 debug:
-	$(QEMU) −S −s −fda floppy.img −boot a & sleep 1
-	cgdb −x scripts/gdbinit
+	$(QEMU) -S -s -fda floppy.img -boot a & sleep 1
+	cgdb -x scripts/gdbinit
