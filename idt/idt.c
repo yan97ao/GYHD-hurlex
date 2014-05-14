@@ -30,6 +30,11 @@ void irq_handler(pt_regs *regs)
 	}
 }
 
+void register_interrupt_handler(uint8_t n, interrupt_handler_t h)
+{
+	interrupt_handlers[n] = h;
+}
+
 static void idt_set_gate(uint8_t num, uint32_t base, uint16_t sel, uint8_t flags);
 
 extern void idt_flush(uint32_t);
