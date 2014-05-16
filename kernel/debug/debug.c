@@ -27,7 +27,7 @@ void print_cur_status()
 	++round;
 }
 
-void painc(const char *msg)
+void panic(const char *msg)
 {
 	printk("*** System painc: %s\n", msg);
 	print_cur_status();
